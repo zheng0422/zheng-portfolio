@@ -12,6 +12,8 @@ import { motion as m } from "framer-motion";
 import Link from "next/link";
 import React, { useState } from 'react';
 import ImageCarousel from './ImageCarousel';
+import BackToTopButton from './BackToTopButton';
+
 
 const Home = () => {
   return (
@@ -22,19 +24,19 @@ const Home = () => {
         <link rel="icon" href="/PFicon.png" />
       </Head>
 
-      <main className="bg-white px-10 pb-10 md:px-20 lg:px-40">
+      <main className="bg-white pb-10 py-20 md:py-10">
         <section className="min-h-screen">
-          <nav className="py-10 mb-0 flex justify-between">
+        <nav className="fixed top-0 py-5 px-10 md:px-40 mb-0 flex justify-between w-full bg-white border-b-2 border-gray-300 z-50">
             <m.div
               initial={{ opacity: 0, x: "-20%" }}
               animate={{ opacity: 1, x: "0%" }}
               transition={{ duration: 1, ease: "easeOut" }}
             >
               <h1
-                className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-teal-500 cursor-pointer transition duration-300 hover:scale-105"
+                className="text-xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-teal-500 cursor-pointer transition duration-300 hover:scale-105"
                 onClick={() => window.location.reload()}
               >
-                ZHENG / PORTFOLIO
+                ZHENG | PORTFOLIO
               </h1>
             </m.div>
             <ul className="flex items-center">
@@ -57,14 +59,13 @@ const Home = () => {
               </li>
             </ul>
           </nav>
-          <hr className="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700"></hr>
           <m.div
             initial={{ opacity: 0, y: "20%" }}
             animate={{ opacity: 1, y: "0%" }}
             transition={{ duration: 1, ease: "easeOut" }}
             className="text-center p-10"
           >
-            <h2 className="text-5xl py-2 text-teal-600 font-medium md:text-6xl">
+            <h2 className="text-5xl md:py-10 py-2 text-teal-600 font-medium md:text-6xl">
               Choo Zheng
             </h2>
             <h3 className="text-2xl py-2 md:text-3xl">
@@ -146,6 +147,15 @@ const Home = () => {
           >
             <h3 className="text-center text-3xl py-10 md:text-4xl">About Me</h3>
             <p className="text-justify leading-8 text-gray-800 max-w-lg mx-auto">
+              I was born <span className="text-teal-500">(2022)</span> in <span className="text-teal-500"> Kelantan, Malaysia. </span>  I enjoy spending my free time with 
+              loved ones, cherishing moments with family and friends. I have a deep passion for exploring new destinations and travelling, capturing breathtaking photos and videos, which I love sharing on my Instagram stories. Engaging in both indoor and outdoor sports allows me to stay active and healthy while having fun. 
+              </p>
+              <br></br>
+              <p className="text-justify leading-8 text-gray-800 max-w-lg mx-auto">  
+              Moreover, I thrive on the excitement of participating in extreme activities, and theme parks hold a special place in my heart as they provide a perfect blend of thrills and entertainment.
+              </p>
+              <br></br>
+              <p className="text-justify leading-8 text-gray-800 max-w-lg mx-auto">  
               My academic journey includes a
               <span className="text-teal-500">
                 {" "}
@@ -166,7 +176,7 @@ const Home = () => {
 
           <div className="py-10 lg:flex gap-10 justify-center ">
             {/*Technical Skills*/}
-            <div>
+            <div className="transition-transform transform-gpu hover:scale-110">
               <div className="shadow-lg p-20 rounded-xl my-10">
                 <div className="flex justify-center items-center">
                   <Image
@@ -185,7 +195,7 @@ const Home = () => {
                 </p>
                 <div className="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
                   <div
-                    className="bg-gradient-to-r from-cyan-500 to-teal-500 h-2 rounded-full "
+                    className="bg-gradient-to-r from-yellow-400 to-amber-500 h-2 rounded-full "
                     style={{ width: "60%" }}
                   ></div>
                 </div>
@@ -195,7 +205,7 @@ const Home = () => {
                 </p>
                 <div className="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
                   <div
-                    className="bg-gradient-to-r from-cyan-500 to-teal-500 h-2 rounded-full "
+                    className="bg-gradient-to-r from-pink-500 to-rose-500 h-2 rounded-full "
                     style={{ width: "70%" }}
                   ></div>
                 </div>
@@ -205,7 +215,7 @@ const Home = () => {
                 </p>
                 <div className="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
                   <div
-                    className="bg-gradient-to-r from-cyan-500 to-teal-500 h-2 rounded-full "
+                    className="bg-gradient-to-r from-cyan-500 to-sky-600 h-2 rounded-full "
                     style={{ width: "40%" }}
                   ></div>
                 </div>
@@ -215,7 +225,7 @@ const Home = () => {
                 </p>
                 <div className="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
                   <div
-                    className="bg-gradient-to-r from-cyan-500 to-teal-500 h-2 rounded-full "
+                    className="bg-gradient-to-r from-emerald-400 to-teal-500 h-2 rounded-full "
                     style={{ width: "70%" }}
                   ></div>
                 </div>
@@ -225,7 +235,7 @@ const Home = () => {
                 </p>
                 <div className="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
                   <div
-                    className="bg-gradient-to-r from-cyan-500 to-teal-500 h-2 rounded-full "
+                    className="bg-gradient-to-r from-orange-500 to-amber-500 h-2 rounded-full "
                     style={{ width: "80%" }}
                   ></div>
                 </div>
@@ -243,7 +253,7 @@ const Home = () => {
             </div>
 
             {/*Certifications*/}
-            <div>
+            <div className="transition-transform transform-gpu hover:scale-110">
               <div className="shadow-lg p-10 rounded-xl my-10 ">
                 <div className="flex justify-center items-center">
                   <Image src={cert} alt="cert" width={180} height={180} />
@@ -275,7 +285,7 @@ const Home = () => {
             </div>
 
             {/*Language Proficiency*/}
-            <div>
+            <div className="transition-transform transform-gpu hover:scale-110">
               <div className="shadow-lg p-20 rounded-xl my-10 ">
                 <div className="flex justify-center items-center">
                   <Image
@@ -353,6 +363,7 @@ const Home = () => {
               </div>
             </Link>
           </m.div>
+          <div><BackToTopButton /></div>
         </section>
       </main>
     </div>

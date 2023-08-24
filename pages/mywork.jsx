@@ -5,6 +5,7 @@ import design1 from "../public/design1.png";
 import design2 from "../public/design2.png";
 import { motion as m } from "framer-motion";
 import Link from "next/link";
+import BackToTopButton from './BackToTopButton';
 
 const HoverImage = ({ imageUrl, figmaLink }) => {
   const [hovered, setHovered] = useState(false);
@@ -46,17 +47,17 @@ const mywork = () => {
         <link rel="icon" href="/PFicon.png" />
       </Head>
 
-      <main className="bg-white px-10 pb-10 md:px-20 lg:px-40">
+      <main className="bg-white pb-10 py-20 md:py-10">
         <section className="min-h-screen">
-          <nav className="py-10 mb-0 flex justify-between">
+        <nav className="fixed top-0 py-5 px-10 md:px-40 mb-0 flex justify-between w-full bg-white border-b-2 border-gray-300 z-50">
             <m.div
               initial={{ opacity: 0, x: "-20%" }}
               animate={{ opacity: 1, x: "0%" }}
               transition={{ duration: 1, ease: "easeOut" }}
             >
               <Link href="/">
-                <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-teal-500 cursor-pointer transition duration-300 hover:scale-105">
-                  PORTFOLIO
+                <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-teal-500 cursor-pointer transition duration-300 hover:scale-105">
+                  PORTFOLIO   
                 </h1>
               </Link>
               <h2 className="text-xl font-semibold text-gray-700 cursor-pointer transition duration-300 hover:scale-105"
@@ -93,7 +94,7 @@ const mywork = () => {
             transition={{ duration: 1, ease: "easeOut" }}
             className="text-center p-10"
           >
-            <h3 className="text-center text-3xl py-10">
+            <h3 className="text-center text-3xl md:text-4xl py-10">
               Works on UX/UI Design
             </h3>
             <h2 className="text-justify text-2xl max-w-3xl mx-auto text-teal-600">
@@ -202,6 +203,9 @@ const mywork = () => {
             </Link>
           </m.div>
         </section>
+        <div>
+        <BackToTopButton />
+        </div>
       </main>
     </div>
   );
