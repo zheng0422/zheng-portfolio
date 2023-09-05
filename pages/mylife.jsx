@@ -1,11 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, Component, useEffect } from "react";
 import Image from "next/image";
 import Head from "next/head";
 import { motion as m } from "framer-motion";
 import Link from "next/link";
 import BackToTopButton from './BackToTopButton';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { BsFillHeartFill, BsChevronDoubleDown } from "react-icons/bs";
+import scrollToTop from './scrollToTop';
+
+
+
 
 const mylife = () => {
+
+    const [slidesToShow, setSlidesToShow] = useState(4);
+
+    useEffect(() => {
+        // Check the window width and update slidesToShow
+        const handleResize = () => {
+            if (window.innerWidth > 1047) {
+                setSlidesToShow(3); // Medium screens
+            } else if (window.innerWidth > 640) {
+                setSlidesToShow(2); // Small screens
+            } else {
+                setSlidesToShow(1); // Mobile view
+            }
+        };
+
+        handleResize();
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    const settings = {
+        dots: true,
+        infinite: true,
+        slidesToShow: slidesToShow,
+        slidesToScroll: 1,
+        autoplay: true,
+        speed: 1000,
+        autoplaySpeed: 3000,
+        cssEase: "linear"
+    };
+
+    useEffect(() => {
+        scrollToTop();
+    }, []);
+
     return (
         <div>
             <Head>
@@ -14,27 +60,69 @@ const mylife = () => {
                 <link rel="icon" href="/z-logo.png" />
             </Head>
 
-            <main className="bg-white pb-10 py-20 md:py-10">
+            <main className="bg-white pt-20 lg:pt-10"
+                style={{
+                    backgroundImage: "url(/bg.svg)",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    backgroundAttachment: "fixed",
+                }}>
                 <section className="min-h-screen">
-                    <nav className="fixed top-0 py-5 px-10 md:px-40 mb-0 flex justify-between w-full bg-white border-b-2 border-gray-300 z-50">
+                    <nav className="fixed flex top-0 py-5 px-10 lg:px-40 mb-0 justify-between w-full bg-white border-b-2 border-gray-300 z-50">
                         <m.div
                             initial={{ opacity: 0, x: "-20%" }}
                             animate={{ opacity: 1, x: "0%" }}
                             transition={{ duration: 1, ease: "easeOut" }}
                         >
                             <Link href="/">
-                                <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-teal-500 cursor-pointer transition duration-300 hover:scale-105">
-                                    PORTFOLIO
+                                <h1
+                                    className="hover:scale-[103%] text-xl lg:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-teal-500 cursor-pointer transition duration-500"
+                                >
+                                    <span className="hidden lg:inline-block">ZHENG |</span> {' '}PORTFOLIO
                                 </h1>
                             </Link>
-                            <h2 className="text-xl font-semibold text-gray-700 cursor-pointer transition duration-300 hover:scale-105"
-                                onClick={() => window.location.reload()}
-                            >
-                                My Life
-                            </h2>
                         </m.div>
-                        <ul className="flex items-center">
-                            <li>
+                        <ul className="flex items-center ">
+                            <li className="px-4 hidden lg:block">
+                                <m.div
+                                    initial={{ opacity: 0, x: "20%" }}
+                                    animate={{ opacity: 1, x: "0%" }}
+                                    transition={{ duration: 1, ease: "easeOut" }}
+                                >
+                                    <Link href="/mywork">
+                                        <div className="group relative hover:scale-[103%] transition duration-500">
+                                            <h1 className="text-xl flex justify-center items-center text-center text-gray-400 font-medium relative
+                                hover:text-transparent
+                                hover:bg-clip-text 
+                                hover:bg-gradient-to-r from-cyan-500 to-teal-500">
+                                                PROJECT
+                                            </h1>
+                                        </div>
+                                    </Link>
+                                </m.div>
+                            </li>
+
+                            <li className="px-4 hidden lg:block">
+                                <m.div
+                                    initial={{ opacity: 0, x: "20%" }}
+                                    animate={{ opacity: 1, x: "0%" }}
+                                    transition={{ duration: 1, ease: "easeOut" }}
+                                >
+                                    <Link href="/mylife">
+                                        <div className="group relative hover:scale-[103%] transition duration-500">
+                                            <h1 className="text-xl flex justify-center items-center text-center text-gray-400 font-medium relative
+                                hover:text-transparent
+                                hover:bg-clip-text 
+                                hover:bg-gradient-to-r from-cyan-500 to-teal-500">
+                                                LIFE
+                                            </h1>
+                                        </div>
+                                    </Link>
+
+                                </m.div>
+                            </li>
+
+                            <li className="px-0">
                                 <m.div
                                     initial={{ opacity: 0, x: "20%" }}
                                     animate={{ opacity: 1, x: "0%" }}
@@ -42,305 +130,623 @@ const mylife = () => {
                                 >
                                     <a
                                         className="text-xl bg-gradient-to-r from-cyan-500 to-teal-500 text-white px-4 py-2 rounded-md ml-8 font-medium
-                    hover:from-cyan-600 hover:to-teal-600 hover:scale-105 hover:shadow-md hover:rotate-1 transition duration-300"
+                    hover:from-cyan-600 hover:to-teal-600 hover:scale-[103%] transition duration-500 hover:shadow-md hover:rotate-1"
                                         href="https://drive.google.com/file/d/132wGRfAY_4IQzmyyKvWJy0_4VF0YQYCg/view?usp=sharing"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
-                                        <span className="hidden md:inline-block">VIEW</span> RESUME
+                                        <span className="hidden lg:inline-block">VIEW</span> RESUME
                                     </a>
                                 </m.div>
                             </li>
                         </ul>
                     </nav>
-                    <hr className="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700"></hr>{" "}
 
-                    {/*Travel Memoirs: Capturing Good Moments*/}
-                    <m.div
-                        initial={{ opacity: 0, y: "20%" }}
-                        animate={{ opacity: 1, y: "0%" }}
-                        transition={{ duration: 1, ease: "easeOut" }}
-                        className="text-center p-10"
-                    >
-                        <h3 className="text-center font-normal text-3xl md:text-4xl pt-20">
-                            Travel Memoirs: Capturing Good Moments
-                        </h3>
+                    <div className="-mt-10 snap-y snap-mandatory h-screen w-screen overflow-scroll no-scrollbar">
+                        <p className="absolute text-center text-teal-600 text-sm font-medium bottom-2 left-1/2 lg:pt-6 animate-bounce">
+                            <BsChevronDoubleDown className="text-lg inline" />
+                        </p>
 
-                        <div class="py-10 flex flex-col items-center justify-center space-y-10">
-                            <div class="w-1 h-1 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                            <div class="w-2 h-2 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                            <div class="w-3 h-3 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                            <div class="w-2 h-2 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                            <div class="w-1 h-1 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                        </div>
-
-
-                        <div className="flex items-center justify-center pb-6 max-w-3xl mx-auto">
-                            <img
-                                src="/my.png"
-                                alt="Image Alt Text"
-                                className="w-12 h-8 mr-5 rounded-sm"
-                            />
-                            <h2 className="text-3xl text-teal-600">
-                                Pulau Langkawi, Malaysia{" "}
-                                <span className="text-xl text-gray-800">(August 2022)</span>
-                            </h2>
-                        </div>
-                        <div className="bg-gray-800 h-72 md:w-1/2 md:h-96 mx-auto flex justify-center items-center rounded-lg shadow-md">
-                            <iframe
-                                className="w-full h-full rounded-lg"
-                                src="https://drive.google.com/file/d/1vvLcqKp8BSwMSHhcgIvCb7tvMV9sxDV0/preview"
-                                allow="autoplay; fullscreen"
-                            ></iframe>
-                        </div>
-                    </m.div>
-
-                    <m.div
-                        initial={{ opacity: 0, y: "20%" }}
-                        animate={{ opacity: 1, y: "0%" }}
-                        transition={{ duration: 1, ease: "easeOut" }}
-                        className="text-center p-10"
-                    >
-
-                        <div class="-mt-20 py-10 flex flex-col items-center justify-center space-y-10">
-                            <div class="w-1 h-1 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                            <div class="w-2 h-2 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                            <div class="w-3 h-3 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                            <div class="w-2 h-2 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                            <div class="w-1 h-1 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                        </div>
-
-
-                        <div className="flex items-center justify-center pb-6 max-w-3xl mx-auto">
-                            <img
-                                src="/czech.png"
-                                alt="Image Alt Text"
-                                className="w-12 h-8 mr-5 rounded-sm"
-                            />
-                            <h2 className="text-3xl text-teal-600">
-                                Prague, Czech Republic{" "}
-                                <span className="text-xl text-gray-800">(September 2022)</span>
-                            </h2>
-                        </div>
-                        <div className="bg-gray-800 h-72 md:w-1/2 md:h-96 mx-auto flex justify-center items-center rounded-lg shadow-md">
-                            <iframe
-                                className="w-full h-full rounded-lg"
-                                src=""
-                                allow="autoplay; fullscreen"
-                            ></iframe>
-                        </div>
-                    </m.div>
-
-                    <m.div
-                        initial={{ opacity: 0, y: "20%" }}
-                        animate={{ opacity: 1, y: "0%" }}
-                        transition={{ duration: 1, ease: "easeOut" }}
-                        className="text-center p-10"
-                    >
-
-                        <div class="-mt-20 py-10 flex flex-col items-center justify-center space-y-10">
-                            <div class="w-1 h-1 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                            <div class="w-2 h-2 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                            <div class="w-3 h-3 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                            <div class="w-2 h-2 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                            <div class="w-1 h-1 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                        </div>
-
-
-                        <div className="flex items-center justify-center pb-6 max-w-3xl mx-auto">
-                            <img
-                                src="/au.png"
-                                alt="Image Alt Text"
-                                className="w-12 h-8 mr-5 rounded-sm"
-                            />
-                            <h2 className="text-3xl text-teal-600">
-                                Vienna, Austria{" "}
-                                <span className="text-xl text-gray-800">(October 2022)</span>
-                            </h2>
-                        </div>
-                        <div className="bg-gray-800 h-72 md:w-1/2 md:h-96 mx-auto flex justify-center items-center rounded-lg shadow-md">
-                            <iframe
-                                className="w-full h-full rounded-lg"
-                                src=""
-                                allow="autoplay; fullscreen"
-                            ></iframe>
-                        </div>
-                    </m.div>
-
-                    <m.div
-                        initial={{ opacity: 0, y: "20%" }}
-                        animate={{ opacity: 1, y: "0%" }}
-                        transition={{ duration: 1, ease: "easeOut" }}
-                        className="text-center p-10"
-                    >
-
-                        <div class="-mt-20 py-10 flex flex-col items-center justify-center space-y-10">
-                            <div class="w-1 h-1 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                            <div class="w-2 h-2 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                            <div class="w-3 h-3 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                            <div class="w-2 h-2 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                            <div class="w-1 h-1 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                        </div>
-
-
-                        <div className="flex items-center justify-center pb-6 max-w-3xl mx-auto">
-                            <img
-                                src="/germany.png"
-                                alt="Image Alt Text"
-                                className="w-12 h-8 mr-5 rounded-sm"
-                            />
-                            <h2 className="text-3xl text-teal-600">
-                                Berlin, Germany{" "}
-                                <span className="text-xl text-gray-800">(December 2022)</span>
-                            </h2>
-                        </div>
-                        <div className="bg-gray-800 h-72 md:w-1/2 md:h-96 mx-auto flex justify-center items-center rounded-lg shadow-md">
-                            <iframe
-                                className="w-full h-full rounded-lg"
-                                src=""
-                                allow="autoplay; fullscreen"
-                            ></iframe>
-                        </div>
-                    </m.div>
-
-                    <m.div
-                        initial={{ opacity: 0, y: "20%" }}
-                        animate={{ opacity: 1, y: "0%" }}
-                        transition={{ duration: 1, ease: "easeOut" }}
-                        className="text-center p-10"
-                    >
-
-                        <div class="-mt-20 py-10 flex flex-col items-center justify-center space-y-10">
-                            <div class="w-1 h-1 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                            <div class="w-2 h-2 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                            <div class="w-3 h-3 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                            <div class="w-2 h-2 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                            <div class="w-1 h-1 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                        </div>
-
-
-                        <div className="flex items-center justify-center pb-6 max-w-3xl mx-auto">
-                            <img
-                                src="/italy.png"
-                                alt="Image Alt Text"
-                                className="w-12 h-8 mr-5 rounded-sm"
-                            />
-                            <h2 className="text-3xl text-teal-600">
-                                Italy{" "}
-                                <span className="text-xl text-gray-800">(December 2022)</span>
-                            </h2>
-                        </div>
-                        <div className="bg-gray-800 h-72 md:w-1/2 md:h-96 mx-auto flex justify-center items-center rounded-lg shadow-md">
-                            <iframe
-                                className="w-full h-full rounded-lg"
-                                src=""
-                                allow="autoplay; fullscreen"
-                            ></iframe>
-                        </div>
-                    </m.div>
-
-                    <m.div
-                        initial={{ opacity: 0, y: "20%" }}
-                        animate={{ opacity: 1, y: "0%" }}
-                        transition={{ duration: 1, ease: "easeOut" }}
-                        className="text-center p-10"
-                    >
-
-                        <div class="-mt-20 py-10 flex flex-col items-center justify-center space-y-10">
-                            <div class="w-1 h-1 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                            <div class="w-2 h-2 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                            <div class="w-3 h-3 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                            <div class="w-2 h-2 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                            <div class="w-1 h-1 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                        </div>
-
-
-                        <div className="flex items-center justify-center pb-6 max-w-3xl mx-auto">
-                            <img
-                                src="/thailand.png"
-                                alt="Image Alt Text"
-                                className="w-12 h-8 mr-5 rounded-sm"
-                            />
-                            <h2 className="text-3xl text-teal-600">
-                                Krabi, Thailand{" "}
-                                <span className="text-xl text-gray-800">(December 2022)</span>
-                            </h2>
-                        </div>
-                        <div className="bg-gray-800 h-72 md:w-1/2 md:h-96 mx-auto flex justify-center items-center rounded-lg shadow-md">
-                            <iframe
-                                className="w-full h-full rounded-lg"
-                                src=""
-                                allow="autoplay; fullscreen"
-                            ></iframe>
-                        </div>
-                    </m.div>
-                    <m.div
-                        initial={{ opacity: 0, y: "20%" }}
-                        animate={{ opacity: 1, y: "0%" }}
-                        transition={{ duration: 1, ease: "easeOut" }}
-                        className="text-center p-10"
-                    >
-
-                        <div class="-mt-20 py-10 flex flex-col items-center justify-center space-y-10">
-                            <div class="w-1 h-1 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                            <div class="w-2 h-2 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                            <div class="w-3 h-3 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                            <div class="w-2 h-2 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                            <div class="w-1 h-1 bg-gradient-to-r from-cyan-300 to-teal-300 rounded-full"></div>
-                        </div>
-
-
-                        <div className="flex items-center justify-center pb-6 max-w-3xl mx-auto">
-                            <img
-                                src="/my.png"
-                                alt="Image Alt Text"
-                                className="w-12 h-8 mr-5 rounded-sm"
-                            />
-                            <h2 className="text-3xl text-teal-600">
-                                Sabah, Malaysia{" "}
-                                <span className="text-xl text-gray-800">(March 2023)</span>
-                            </h2>
-                        </div>
-                        <div className="bg-gray-800 h-72 md:w-1/2 md:h-96 mx-auto flex justify-center items-center rounded-lg shadow-md">
-                            <iframe
-                                className="w-full h-full rounded-lg"
-                                src=""
-                                allow="autoplay; fullscreen"
-                            ></iframe>
-                        </div>
-                    </m.div>
-
-                </section>
-
-                <section className="pt-20">
-                    <m.div
-                        className="flex justify-center items-center pr-8 md:pr-0"
-                        initial={{ opacity: 0, x: "20%" }}
-                        animate={{ opacity: 1, x: "0%" }}
-                        transition={{ duration: 1, ease: "easeOut" }}
-                    >
-                        <Link href="/">
-                            <div
-                                className="text-xl flex justify-center items-center text-center bg-gradient-to-r from-cyan-500 to-teal-500 
-             hover:from-cyan-600 hover:to-teal-600 
-             text-white px-4 py-2 rounded-md ml-8 font-medium 
-             hover:scale-105 hover:shadow-md hover:-rotate-1
-             transition duration-300"
-                                style={{ width: "180px", height: "50px" }}
+                        <div class="snap-start w-screen h-screen pt-10">
+                            <m.div
+                                initial={{ opacity: 0, y: "20%" }}
+                                animate={{ opacity: 1, y: "0%" }}
+                                transition={{ duration: 1, ease: "easeOut" }}
+                                className="text-center p-10 -mt-4"
                             >
-                                Back to Home
-                            </div>
-                        </Link>
-                    </m.div>
-                </section>
-                <div>
-                    <BackToTopButton />
-                </div>
-            </main>
-            {/*Footer*/}
-            <div className="bg-gray-500 h-32 md:h-28 flex justify-center items-center">
+                                <h3 className="text-center font-semibold text-gray-700 text-2xl lg:text-4xl pt-2 lg:pt-14">
+                                    <span className="mr-3"><BsFillHeartFill className="text-red-400 text-2xl lg:text-3xl inline" /></span>
+                                    Travel Memoirs: <span className="mr-3"><BsFillHeartFill className="lg:hidden text-red-400 text-2xl lg:text-3xl inline" /></span>
+                                    Capturing Good Moments
+                                    <span className="ml-3"><BsFillHeartFill className="hidden lg:inline-block text-red-400 text-2xl lg:text-3xl" /></span>
+                                </h3>
 
-            </div>
+                                <div className="flex items-center justify-center pt-10 pb-6 max-w-3xl mx-auto">
+                                    <img
+                                        src="/my.png"
+                                        alt="Image Alt Text"
+                                        className="w-12 h-8 mr-5 rounded-sm"
+                                    />
+                                    <h2 className="text-xl lg:text-3xl text-teal-600">
+                                        Pulau Langkawi, Malaysia{" "}
+                                        <span className="text-lg lg:text-xl text-gray-800">(August 2022)</span>
+                                    </h2>
+                                </div>
+                                <div className="bg-gradient-to-b from-slate-100 via-slate-50 to-slate-100 mx-auto w-[300px] h-[180px] lg:w-[680px] lg:h-[380px] flex justify-center items-center rounded-3xl shadow-md">
+                                    <iframe
+                                        className="w-full h-full rounded-3xl"
+                                        src="https://drive.google.com/file/d/1vvLcqKp8BSwMSHhcgIvCb7tvMV9sxDV0/preview"
+                                        allowFullScreen
+                                    />
+                                </div>
+                            </m.div>
+                        </div>
+
+                        <div class="snap-start w-screen h-screen mt-60 pt-10 lg:pt-20">
+                            <m.div
+                                initial={{ opacity: 0, y: "20%" }}
+                                animate={{ opacity: 1, y: "0%" }}
+                                transition={{ duration: 1, ease: "easeOut" }}
+                                className="text-center lg:p-4"
+                            >
+
+                                <div className="flex items-center justify-center max-w-3xl mx-auto">
+                                    <img
+                                        src="/czech.png"
+                                        alt="Image Alt Text"
+                                        className="w-12 h-8 mr-5 rounded-sm"
+                                    />
+                                    <h2 className="text-xl lg:text-3xl text-teal-600">
+                                        <span className="hidden lg:inline-block">Prague,</span>{" "}Czech Republic{" "}
+                                        <span className="text-lg lg:text-xl text-gray-800">(September 2022)</span>
+                                    </h2>
+                                </div>
+                                <div className="lg:flex lg:justify-center lg:items-center">
+                                    <div className="bg-gradient-to-b from-slate-50 via-gray-300 to-slate-50 w-auto lg:w-auto 2xl:w-3/5 mt-4 px-10 pb-6 pt-6 lg:px-10 lg:mx-52 rounded-3xl">
+                                        <Slider {...settings}>
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/prg1.PNG" alt="prg1" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/prg2.PNG" alt="prg2" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/prg3.PNG" alt="prg3" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/prg4.PNG" alt="prg4" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/prg5.PNG" alt="prg5" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/prg6.PNG" alt="prg6" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/prg7.PNG" alt="prg7" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+                                        </Slider>
+                                    </div>
+                                </div>
+                            </m.div>
+                        </div>
+
+                        <div class="snap-start w-screen h-screen pt-10 lg:pt-20">
+                            <m.div
+                                initial={{ opacity: 0, y: "20%" }}
+                                animate={{ opacity: 1, y: "0%" }}
+                                transition={{ duration: 1, ease: "easeOut" }}
+                                className="text-center lg:p-4"
+                            >
+
+                                <div className="flex items-center justify-center max-w-3xl mx-auto">
+                                    <img
+                                        src="/au.png"
+                                        alt="Image Alt Text"
+                                        className="w-12 h-8 mr-5 rounded-sm"
+                                    />
+                                    <h2 className="text-xl lg:text-3xl text-teal-600">
+                                        Vienna, Austria{" "}
+                                        <span className="text-lg lg:text-xl text-gray-800">(October 2022)</span>
+                                    </h2>
+                                </div>
+                                <div className="lg:flex lg:justify-center lg:items-center">
+                                    <div className="bg-gradient-to-b from-slate-50 via-gray-300 to-slate-50 w-auto px-10 lg:w-auto 2xl:w-3/5 mt-4 pb-6 pt-6 lg:px-10 lg:mx-52 rounded-3xl">
+                                        <Slider {...settings}>
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/au1.PNG" alt="au1" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/au2.PNG" alt="au2" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/au3.PNG" alt="au3" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/au4.PNG" alt="au4" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/au5.PNG" alt="au5" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+                                        </Slider>
+                                    </div>
+                                </div>
+                            </m.div>
+                        </div>
+
+                        <div class="snap-start w-screen h-screen pt-10 lg:pt-20">
+                            <m.div
+                                initial={{ opacity: 0, y: "20%" }}
+                                animate={{ opacity: 1, y: "0%" }}
+                                transition={{ duration: 1, ease: "easeOut" }}
+                                className="text-center lg:p-4"
+                            >
+
+                                <div className="flex items-center justify-center max-w-3xl mx-auto">
+                                    <img
+                                        src="/germany.png"
+                                        alt="Image Alt Text"
+                                        className="w-12 h-8 mr-5 rounded-sm"
+                                    />
+                                    <h2 className="text-xl lg:text-3xl text-teal-600">
+                                        Berlin, Germany{" "}
+                                        <span className="text-lg lg:text-xl text-gray-800">(December 2022)</span>
+                                    </h2>
+                                </div>
+                                <div className="lg:flex lg:justify-center lg:items-center">
+                                    <div className="bg-gradient-to-b from-slate-50 via-gray-300 to-slate-50 w-auto px-10 lg:w-auto 2xl:w-3/5 mt-4 pb-6 pt-6 lg:px-10 lg:mx-52 rounded-3xl">
+                                        <Slider {...settings}>
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/gmn1.PNG" alt="gmn1" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/gmn2.PNG" alt="gmn2" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/gmn3.PNG" alt="gmn3" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/gmn4.PNG" alt="gmn4" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/gmn5.PNG" alt="gmn5" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/gmn6.PNG" alt="gmn6" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/gmn7.PNG" alt="gmn7" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/gmn8.PNG" alt="gmn8" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/gmn9.PNG" alt="gmn9" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/gmn10.PNG" alt="gmn10" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/gmn11.PNG" alt="gmn11" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/gmn12.PNG" alt="gmn12" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+                                        </Slider>
+                                    </div>
+                                </div>
+                            </m.div>
+                        </div>
+
+                        <div class="snap-start w-screen h-screen pt-10 lg:pt-20">
+                            <m.div
+                                initial={{ opacity: 0, y: "20%" }}
+                                animate={{ opacity: 1, y: "0%" }}
+                                transition={{ duration: 1, ease: "easeOut" }}
+                                className="text-center lg:p-4"
+                            >
+
+                                <div className="flex items-center justify-center pb-0 max-w-3xl mx-auto">
+                                    <img
+                                        src="/italy.png"
+                                        alt="Image Alt Text"
+                                        className="w-12 h-8 mr-5 rounded-sm"
+                                    />
+                                    <h2 className="text-xl lg:text-3xl text-teal-600">
+                                        Italy{" "}
+                                        <span className="text-lg lg:text-xl text-gray-800">(December 2022)</span>
+                                    </h2>
+                                </div>
+                                <div className="lg:flex lg:justify-center lg:items-center">
+                                    <div className="bg-gradient-to-b from-slate-50 via-gray-300 to-slate-50 w-auto px-10 lg:w-auto 2xl:w-3/5 mt-4 pb-6 pt-6 lg:px-10 lg:mx-52 rounded-3xl">
+                                        <Slider {...settings}>
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/italy1.PNG" alt="italy1" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/italy2.PNG" alt="italy2" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/italy3.PNG" alt="italy3" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/italy4.PNG" alt="italy4" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/italy5.PNG" alt="italy5" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/italy6.PNG" alt="italy6" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/italy7.PNG" alt="italy7" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/italy8.PNG" alt="italy8" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/italy9.PNG" alt="italy9" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/italy10.PNG" alt="italy10" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/italy11.PNG" alt="italy11" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/italy12.PNG" alt="italy12" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/italy13.PNG" alt="italy13" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/italy14.PNG" alt="italy14" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/italy15.PNG" alt="italy15" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/italy16.PNG" alt="italy16" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+                                        </Slider>
+                                    </div>
+                                </div>
+                            </m.div>
+                        </div>
+
+                        <div class="snap-start w-screen h-screen pt-10 lg:pt-20">
+                            <m.div
+                                initial={{ opacity: 0, y: "20%" }}
+                                animate={{ opacity: 1, y: "0%" }}
+                                transition={{ duration: 1, ease: "easeOut" }}
+                                className="text-center lg:p-4"
+                            >
+
+                                <div className="flex items-center justify-center pb-0 max-w-3xl mx-auto">
+                                    <img
+                                        src="/thailand.png"
+                                        alt="Image Alt Text"
+                                        className="w-12 h-8 mr-5 rounded-sm"
+                                    />
+                                    <h2 className="text-xl lg:text-3xl text-teal-600">
+                                        Krabi, Thailand{" "}
+                                        <span className="text-lg lg:text-xl text-gray-800">(December 2022)</span>
+                                    </h2>
+                                </div>
+                                <div className="lg:flex lg:justify-center lg:items-center">
+                                    <div className="bg-gradient-to-b from-slate-50 via-gray-300 to-slate-50 w-auto px-10 lg:w-auto 2xl:w-3/5 mt-4 pb-6 pt-6 lg:px-10 lg:mx-52 rounded-3xl">
+                                        <Slider {...settings}>
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/th1.PNG" alt="th1" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/th2.PNG" alt="th2" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/th3.PNG" alt="th3" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/th4.PNG" alt="th4" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/th5.PNG" alt="th5" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/th6.PNG" alt="th6" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/th7.PNG" alt="th7" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/th8.PNG" alt="th8" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/th9.PNG" alt="th9" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/th10.PNG" alt="th10" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/th11.PNG" alt="th11" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+                                        </Slider>
+                                    </div>
+                                </div>
+                            </m.div>
+                        </div>
+
+                        <div class="snap-start w-screen h-screen pt-10 lg:pt-20">
+                            <m.div
+                                initial={{ opacity: 0, y: "20%" }}
+                                animate={{ opacity: 1, y: "0%" }}
+                                transition={{ duration: 1, ease: "easeOut" }}
+                                className="text-center lg:p-4"
+                            >
+
+                                <div className="flex items-center justify-center pb-0 max-w-3xl mx-auto">
+                                    <img
+                                        src="/my.png"
+                                        alt="Image Alt Text"
+                                        className="w-12 h-8 mr-5 rounded-sm"
+                                    />
+                                    <h2 className="text-xl lg:text-3xl text-teal-600">
+                                        Sabah, Malaysia{" "}
+                                        <span className="text-lg lg:text-xl text-gray-800">(March 2023)</span>
+                                    </h2>
+                                </div>
+                                <div className="lg:flex lg:justify-center lg:items-center">
+                                    <div className="bg-gradient-to-b from-slate-50 via-gray-300 to-slate-50 w-auto px-10 lg:w-auto 2xl:w-3/5 mt-4 pb-6 pt-6 lg:px-10 lg:mx-52 rounded-3xl">
+                                        <Slider {...settings}>
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/sabah1.PNG" alt="sabah1" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/sabah2.PNG" alt="sabah2" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/sabah3.PNG" alt="sabah3" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/sabah4.PNG" alt="sabah4" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/sabah5.PNG" alt="sabah5" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/sabah6.PNG" alt="sabah6" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/sabah7.PNG" alt="sabah7" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/sabah8.PNG" alt="sabah8" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/sabah9.PNG" alt="sabah9" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/sabah10.PNG" alt="sabah10" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div className="flex items-center justify-center">
+                                                    <Image src="/sabah11.PNG" alt="sabah11" width={241} height={429} className="sm:scale-[80%] rounded-xl mb-7" />
+                                                </div>
+                                            </div>
+                                        </Slider>
+                                    </div>
+                                </div>
+                            </m.div>
+                        </div>
+
+                        <div class="snap-start w-screen my-10 lg:my-0 h-screen lg:pt-20"
+                            style={{
+                                backgroundImage: "url(/thankyou.svg)",
+                                backgroundSize: "contain",
+                                backgroundRepeat: "no-repeat",
+                                backgroundPosition: "center",
+                                backgroundAttachment: "fixed",
+                            }}>
+                            <m.div
+                                className="flex justify-center items-center pt-[400px] lg:pr-0 lg:pt-[400px]"
+                                initial={{ opacity: 0, x: "20%" }}
+                                animate={{ opacity: 1, x: "0%" }}
+                                transition={{ duration: 1, ease: "easeOut" }}
+                            >
+                                <Link href="/">
+                                    <div
+                                        className="text-xl flex justify-center items-center text-center bg-gradient-to-r from-cyan-500 to-teal-500 
+                                                    hover:from-cyan-600 hover:to-teal-600 
+                                                    text-white rounded-md font-medium 
+                                                    hover:scale-105 hover:shadow-md hover:-rotate-1
+                                                    transition duration-300"
+                                        style={{ width: "180px", height: "50px" }}
+                                    >
+                                        Back to Home
+                                    </div>
+                                </Link>
+                            </m.div>
+                        </div>
+                    </div>
+                </section>
+            </main>
         </div >
     );
 };
