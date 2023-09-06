@@ -7,10 +7,6 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { BsFillHeartFill, BsChevronDoubleDown } from "react-icons/bs";
-import scrollToTop from './scrollToTop';
-
-
-
 
 const MyLife = () => {
 
@@ -46,10 +42,6 @@ const MyLife = () => {
         autoplaySpeed: 3000,
         cssEase: "linear"
     };
-
-    useEffect(() => {
-        scrollToTop();
-    }, []);
 
     return (
         <div>

@@ -10,19 +10,14 @@ import lanugage from "../public/language.png";
 import cert from "../public/cert.png";
 import { motion as m } from "framer-motion";
 import Link from "next/link";
-import React, { useState, useEffect } from 'react';
+import React, {useEffect } from 'react';
 import BackToTopButton from './BackToTopButton';
 import profile1 from '../public/profile1.jpg';
 import profile2 from '../public/profile2.jpg';
-import scrollToTop from './scrollToTop';
 
 
 
 const Home = () => {
-  useEffect(() => {
-     scrollToTop();
-   }, []);
-
   return (
     <div>
       <Head>

@@ -6,7 +6,6 @@ import design2 from "../public/design2.png";
 import { motion as m } from "framer-motion";
 import Link from "next/link";
 import BackToTopButton from './BackToTopButton';
-import scrollToTop from './scrollToTop';
 
 const HoverImage = ({ imageUrl, figmaLink }) => {
   const [hovered, setHovered] = useState(false);
@@ -40,10 +39,6 @@ const HoverImage = ({ imageUrl, figmaLink }) => {
 };
 
 const MyWork = () => {
-  useEffect(() => {
-    scrollToTop();
-  }, []);
-
   return (
     <div>
       <Head>
