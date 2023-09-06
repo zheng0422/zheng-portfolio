@@ -39,7 +39,7 @@ const HoverImage = ({ imageUrl, figmaLink }) => {
   );
 };
 
-const mywork = () => {
+const MyWork = () => {
   useEffect(() => {
     scrollToTop();
   }, []);
@@ -79,18 +79,17 @@ const mywork = () => {
                 <m.div
                   initial={{ opacity: 0, x: "20%" }}
                   animate={{ opacity: 1, x: "0%" }}
-                  transition={{ duration: 1, ease: "easeOut" }}
-                >
-                  <Link href="/mywork">
-                    <div className="group relative hover:scale-[103%] transition duration-500">
-                      <h1 className="text-xl flex justify-center items-center text-center text-gray-400 font-medium relative
+                  transition={{ duration: 1, ease: "easeOut" }}>
+                  <div className="group relative hover:scale-[103%] transition duration-500 cursor-pointer">
+                    <h1 className="text-xl flex justify-center items-center text-center text-gray-400 font-medium relative
                                 hover:text-transparent
                                 hover:bg-clip-text 
-                                hover:bg-gradient-to-r from-cyan-500 to-teal-500">
-                        PROJECT
-                      </h1>
-                    </div>
-                  </Link>
+                                hover:bg-gradient-to-r from-cyan-500 to-teal-500"
+                                onClick={() => window.location.reload()}
+                    >
+                      PROJECT
+                    </h1>
+                  </div>
                 </m.div>
               </li>
 
@@ -100,7 +99,7 @@ const mywork = () => {
                   animate={{ opacity: 1, x: "0%" }}
                   transition={{ duration: 1, ease: "easeOut" }}
                 >
-                  <Link href="/mylife">
+                  <Link href="/MyLife">
                     <div className="group relative hover:scale-[103%] transition duration-500">
                       <h1 className="text-xl flex justify-center items-center text-center text-gray-400 font-medium relative
                                 hover:text-transparent
@@ -262,8 +261,8 @@ const mywork = () => {
       <div className="bg-gray-500 h-32 lg:h-28 flex justify-center items-center">
 
       </div>
-    </div>
+    </div >
   );
 };
 
-export default mywork;
+export default MyWork;

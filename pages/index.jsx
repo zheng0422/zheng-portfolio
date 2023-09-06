@@ -59,7 +59,7 @@ const Home = () => {
                   animate={{ opacity: 1, x: "0%" }}
                   transition={{ duration: 1, ease: "easeOut" }}
                 >
-                  <Link href="/mywork">
+                  <Link href="/MyWork">
                     <div className="group relative hover:scale-[103%] transition duration-500">
                       <h1 className="text-xl flex justify-center items-center text-center text-gray-400 font-medium relative
                                 hover:text-transparent
@@ -78,7 +78,7 @@ const Home = () => {
                   animate={{ opacity: 1, x: "0%" }}
                   transition={{ duration: 1, ease: "easeOut" }}
                 >
-                  <Link href="/mylife">
+                  <Link href="/MyLife">
                     <div className="group relative hover:scale-[103%] transition duration-500">
                       <h1 className="text-xl flex justify-center items-center text-center text-gray-400 font-medium relative
                                 hover:text-transparent
@@ -497,7 +497,7 @@ const Home = () => {
             animate={{ opacity: 1, x: "0%" }}
             transition={{ duration: 1, ease: "easeOut" }}
           >
-            <Link href="/mywork">
+            <Link href="/MyWork">
               <div
                 className="text-xl flex justify-center items-center text-center bg-gradient-to-r from-cyan-500 to-teal-500 
              hover:from-cyan-600 hover:to-teal-600 
@@ -516,7 +516,7 @@ const Home = () => {
             animate={{ opacity: 1, x: "0%" }}
             transition={{ duration: 1, ease: "easeOut" }}
           >
-            <Link href="/mylife">
+            <Link href="/MyLife">
               <div
                 className="text-xl flex justify-center items-center text-center bg-gradient-to-r from-cyan-500 to-teal-500 
              hover:from-cyan-600 hover:to-teal-600 

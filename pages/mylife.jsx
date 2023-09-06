@@ -1,9 +1,8 @@
-import React, { useState, Component, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import Image from "next/image";
 import Head from "next/head";
 import { motion as m } from "framer-motion";
 import Link from "next/link";
-import BackToTopButton from './BackToTopButton';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -13,7 +12,7 @@ import scrollToTop from './scrollToTop';
 
 
 
-const mylife = () => {
+const MyLife = () => {
 
     const [slidesToShow, setSlidesToShow] = useState(4);
 
@@ -89,7 +88,7 @@ const mylife = () => {
                                     animate={{ opacity: 1, x: "0%" }}
                                     transition={{ duration: 1, ease: "easeOut" }}
                                 >
-                                    <Link href="/mywork">
+                                    <Link href="/MyWork">
                                         <div className="group relative hover:scale-[103%] transition duration-500">
                                             <h1 className="text-xl flex justify-center items-center text-center text-gray-400 font-medium relative
                                 hover:text-transparent
@@ -108,16 +107,18 @@ const mylife = () => {
                                     animate={{ opacity: 1, x: "0%" }}
                                     transition={{ duration: 1, ease: "easeOut" }}
                                 >
-                                    <Link href="/mylife">
-                                        <div className="group relative hover:scale-[103%] transition duration-500">
-                                            <h1 className="text-xl flex justify-center items-center text-center text-gray-400 font-medium relative
+
+                                    <div className="group relative hover:scale-[103%] transition duration-500  cursor-pointer">
+                                        <h1 className="text-xl flex justify-center items-center text-center text-gray-400 font-medium relative
                                 hover:text-transparent
                                 hover:bg-clip-text 
-                                hover:bg-gradient-to-r from-cyan-500 to-teal-500">
-                                                LIFE
-                                            </h1>
-                                        </div>
-                                    </Link>
+                                hover:bg-gradient-to-r from-cyan-500 to-teal-500"
+                                            onClick={() => window.location.reload()}
+                                        >
+                                            LIFE
+                                        </h1>
+                                    </div>
+
 
                                 </m.div>
                             </li>
@@ -751,4 +752,4 @@ const mylife = () => {
     );
 };
 
-export default mylife;
+export default MyLife;
