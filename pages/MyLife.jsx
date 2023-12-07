@@ -154,7 +154,7 @@ const MyLife = () => {
                                     <span className="ml-3"><BsFillHeartFill className="hidden lg:inline-block text-red-400 text-2xl lg:text-3xl" /></span>
                                 </h3>
 
-{/*                                 <div className="flex items-center justify-center pt-10 pb-6 max-w-3xl mx-auto">
+                                <div className="flex items-center justify-center pt-10 pb-6 max-w-3xl mx-auto">
                                     <img
                                         src="/my.png"
                                         alt="Image Alt Text"
@@ -168,10 +168,10 @@ const MyLife = () => {
                                 <div className="bg-gradient-to-b from-slate-100 via-slate-50 to-slate-100 mx-auto w-[300px] h-[180px] lg:w-[680px] lg:h-[380px] flex justify-center items-center rounded-3xl shadow-md">
                                     <iframe
                                         className="w-full h-full rounded-3xl"
-                                        src="https://drive.google.com/file/d/1vvLcqKp8BSwMSHhcgIvCb7tvMV9sxDV0/preview"
+                                        src="https://drive.google.com/file/d/1FrPY_BvNbrGdvW9O4eLr0hEJyGgQKY6X/preview"
                                         allowFullScreen
                                     />
-                                </div> */}
+                                </div>
                             </m.div>
                         </div>
 
