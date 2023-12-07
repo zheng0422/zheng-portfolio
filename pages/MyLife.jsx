@@ -154,7 +154,7 @@ const MyLife = () => {
                                     <span className="ml-3"><BsFillHeartFill className="hidden lg:inline-block text-red-400 text-2xl lg:text-3xl" /></span>
                                 </h3>
 
-                                <div className="flex items-center justify-center pt-10 pb-6 max-w-3xl mx-auto">
+{/*                                 <div className="flex items-center justify-center pt-10 pb-6 max-w-3xl mx-auto">
                                     <img
                                         src="/my.png"
                                         alt="Image Alt Text"
@@ -171,7 +171,7 @@ const MyLife = () => {
                                         src="https://drive.google.com/file/d/1vvLcqKp8BSwMSHhcgIvCb7tvMV9sxDV0/preview"
                                         allowFullScreen
                                     />
-                                </div>
+                                </div> */}
                             </m.div>
                         </div>
 
