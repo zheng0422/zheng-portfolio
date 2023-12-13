@@ -96,7 +96,7 @@ const Home = () => {
                   <a
                     className="text-xl bg-gradient-to-r from-cyan-500 to-teal-500 text-white px-4 py-2 rounded-md ml-8 font-medium
                     hover:from-cyan-600 hover:to-teal-600 hover:scale-[103%] transition duration-500 hover:shadow-md hover:rotate-1"
-                    href="https://drive.google.com/file/d/132wGRfAY_4IQzmyyKvWJy0_4VF0YQYCg/view?usp=sharing"
+                    href="https://drive.google.com/file/d/176h7iy6KkSMFLiIPsmacWNp8NqzrVzH8/view?usp=sharing"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
